@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.css">
+<link rel="stylesheet" type="text/css" href="//unpkg.com/angular-ui-tree@^2.22.5/dist/angular-ui-tree.min.css">
+<link href="/static/app/app.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+{% block content %}
+{% verbatim %}
+<div ng-app="bookshelf">
+    <ui-view></ui-view>
+</div>
+{% endverbatim %}
+{% endblock %}
+
+{% block postscripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-rc.1/angular-ui-router.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.5/angular-sanitize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.5/angular-resource.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-aria.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.0.1/angular-moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.tpls.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/api-check/7.5.5/api-check.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-formly/8.4.1/formly.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-formly-templates-bootstrap/6.4.0/angular-formly-templates-bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.16/angular-filter.min.js"></script>
+<script src="{% static "app/bookshelf/list/bookshelf_list.js" %}"></script>
+<script src="{% static "app/bookshelf/resources/bookshelf.js" %}"></script>
+<script src="{% static "app/bookshelf/service/bookshelf.js" %}"></script>
+<script src="{% static "app/bookshelf/create/addController.js" %}"></script>
+<script src="{% static "app/bookshelf/delete/deleteController.js" %}"></script>
+<script src="{% static "app/bookshelf/update/updateController.js" %}"></script>
+<script src="{% static "app/bookshelf/upload/upload.js" %}"></script>
+<script src="{% static "app/app.js" %}"></script>
+<!-- Angular Material Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+<script src="https://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js"></script>
+{% endblock %}
+</body>
+</html>

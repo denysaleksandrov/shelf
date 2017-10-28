@@ -1,0 +1,116 @@
+
+<div ng-cloak layout="column">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <div class="md-title">Book List: {{ $ctrl.book_count }} {{$ctrl.book_count > 1 ? 'books': 'book'}}</div>
+        <!--
+        <md-button class="md-raised" id="add-button" ng-click="$ctrl.addBook($event)" aria-label="Add Book">Add Book</md-button>
+        <md-button class="md-raised md-warn" id="del-button" ng-disabled="!$ctrl.selected.length" ng-click="$ctrl.deleteBooks($event)" aria-label="Delete Book">Delete</md-button>
+        -->
+      </div>
+    </md-toolbar>
+    <md-content layout-xs="column" layout="row" flex>
+      <div flex="70" layout="column">
+      <md-card>
+        <md-toolbar class="md-table-toolbar md-default" ng-hide="$ctrl.selected.length">
+          <div class="md-toolbar-tools">
+            <span>Books</span>
+            <div flex="" class="flex"></div>
+            <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="$ctrl.addBook($event)" aria-label="add_book">
+                <md-icon class="material-icons">add_box</md-icon>
+                <div class="md-ripple-container"></div>
+            </button>
+          </div>
+        </md-toolbar>
+        <md-toolbar class="md-table-toolbar alternate ng-hide" ng-show="$ctrl.selected.length" aria-hidden="true" style="">
+          <div class="md-toolbar-tools">
+            <div>{{$ctrl.selected.length}} {{$ctrl.selected.length > 1 ? 'items' : 'item'}} selected</div>
+            <div flex="" class="flex"></div>
+            <button class="md-icon-button md-button md-ink-ripple" ng-show="$ctrl.selected.length==1" type="button" ng-click="$ctrl.updateBook($event)" aria-label="update">
+              <md-icon class="material-icons">book</md-icon>
+              <div class="md-ripple-container"></div>
+            </button>
+            <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="$ctrl.deleteBooks($event)" aria-label="delete">
+              <md-icon class="material-icons">delete_sweep</md-icon>
+              <div class="md-ripple-container"></div>
+            </button>
+          </div>
+        </md-toolbar>
+        <md-table-container>
+          <table md-table md-row-select="$ctrl.options.rowSelection" multiple="{{$ctrl.options.multiSelect}}" ng-model="$ctrl.selected" md-progress="promise">
+            <thead ng-if="!$ctrl.options.decapitate" md-head md-order="$ctrl.query.order">
+              <tr md-row>
+                <th md-column md-order-by="title"><span>Title<span></th>
+                <th md-column md-order-by="author"><span>Author</span></th>
+                <th md-column md-order-by="publishdate" md-desc><span>Publish Date</span></th>
+                <th md-column md-order-by="updatedAt" md-desc><span>Last Updated</span></th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr class="md-table-data-row" md-select="book"
+                  md-auto-select="$ctrl.options.autoSelect" ng-repeat="book in $ctrl.books| filter: $ctrl.filter.search | orderBy: $ctrl.query.order">
+                <td md-cell>{{book.title}}</td>
+                <td md-cell>{{book.author}}</md-select></td>
+                <td md-cell>{{book.publishdate}}</td>
+                <td md-cell hide-gt-xs show-gt-md>{{book.updatedAt | date:'medium'}}</td>
+                <td class="md-table-td-more">
+                    <!--
+                    <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="$ctrl.updateBook($event)" aria-label="info">
+                    -->
+                    <button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="info">
+                        <md-icon class="material-icons">more_vert</md-icon>
+                        <div class="md-ripple-container"></div>
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+        <md-table-pagination md-on-paginate="$ctrl.onPaginate" md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page" md-total="{{$ctrl.book_count}}" md-page-select="$ctrl.options.pageSelect" md-boundary-links="$ctrl.options.boundaryLinks">
+        </md-table-pagination>
+      </md-card>
+      </div>
+     <div flex="30" layout="column">
+        <md-card class="animate-show animate-hide transparent" ng-show="$ctrl.selected.length==1">
+            <h2>Book</h2>
+            <md-list>
+      	    	<md-list-item class="md-3-line">
+            		<div class="md-list-item-text">
+                        <p>Title</p>
+              			<h3>{{$ctrl.selected[0].title}}</h3>
+            		</div>
+            		<md-divider></md-divider>
+                </md-list-item>
+      	    	<md-list-item class="md-3-line">
+            		<div class="md-list-item-text">
+                        <p>Author</p>
+              			<h3>{{$ctrl.selected[0].author}}</h3>
+            		</div>
+            		<md-divider></md-divider>
+                </md-list-item>
+      	    	<md-list-item class="md-3-line">
+            		<div class="md-list-item-text">
+                        <p>Date</p>
+              			<h4>{{$ctrl.selected[0].publishdate}}</h4>
+            		</div>
+            		<md-divider></md-divider>
+                </md-list-item>
+      	    	<md-list-item class="md-3-line">
+            		<div class="md-list-item-text">
+                        <p>Description</p>
+              			<h4 style="width:300px; white-space: normal; word-wrap: break-word">{{$ctrl.selected[0].description}}</h4>
+            		</div>
+            		<md-divider></md-divider>
+                </md-list-item>
+      	    	<md-list-item class="md-3-line" ng-show="$ctrl.selected[0].cover">
+            		<div class="md-list-item-text">
+                        <p>Cover</p>
+              			<img src="{{$ctrl.selected[0].cover}}">
+            		</div>
+                </md-list-item>
+            <md-list>
+        </md-card>
+      </div>
+    </md-content>
+</div>
+<!--<pre>{{$ctrl.selected | json }}</pre>-->

@@ -1,0 +1,62 @@
+angular.module('create', ['service', 'resource'])
+.component('create', {
+    templateUrl: '/static/app/bookshelf/create/book_create.html',
+    bindigns: {
+        device: '<'
+    },
+    controller: function($scope, $state, resource, service) {
+        var ctrl = this;
+        ctrl.racks = [];
+        ctrl.models = [];
+        ctrl.owners = [];
+        ctrl.searchText = "";
+        ctrl.onInit = function() {
+            resource.racks().$promise.then(function(res) {
+                ctrl.racks = res.racks;
+            })
+            resource.owners().$promise.then(function(res) {
+                ctrl.owners = res.results;
+            })
+            resource.device_models().$promise.then(function(res) {
+                ctrl.models = res.results;
+            })
+        };
+        ctrl.onInit();
+        ctrl.reset = function() {
+            ctrl.device = {
+                hostname: "",
+                device_model_id: "",
+                owner_id: "",
+                rack_id: "",
+                infrastructure: "false",
+                position: ""
+            }
+        };
+        ctrl.cancel = function() {
+            $state.go('inventory');
+        };
+        ctrl.submit = function() {
+            ctrl.messages = [];
+            resource.saveJunosdevice(ctrl.device).$promise.then(function(data) {
+                ctrl.messages.push("JunosDevice " + ctrl.device.hostname + " created.");
+                service.showToast(ctrl.messages, 'success');
+                $state.go('inventory');
+            }, function(error) {
+                console.log(error);
+                angular.forEach(error.data, function(field, errors) {
+                    ctrl.messages.push(field)
+                });
+                service.showToast(ctrl.messages, 'error');
+            });
+        };
+        ctrl.querySearch = function(query, where) {
+            var results = query ? where.filter(ctrl.createFilterFor(query)) : where;
+            return results;
+        }
+        ctrl.createFilterFor = function(query) {
+            return function filterFn(model) {
+                return (model.name.search(new RegExp(query, "i")) >= 0);
+            };
+        };
+    }
+});

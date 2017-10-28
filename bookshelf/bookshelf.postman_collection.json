@@ -1,0 +1,317 @@
+{
+	"variables": [],
+	"info": {
+		"name": "shelf",
+		"_postman_id": "a8badb2f-8b21-4c19-3183-93c4eb618a7c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON = JSON.parse(responseBody);",
+							"",
+							"tests['Response contains \"book\" property'] = responseJSON.hasOwnProperty('book');",
+							"",
+							"var  book = responseJSON.book || {};",
+							"",
+							"tests['book has \"title\" property'] = book.hasOwnProperty('title');",
+							"tests['book has \"author\" property'] = book.hasOwnProperty('author');",
+							"tests['book has \"id\" property'] = book.hasOwnProperty('id');",
+							"if(tests['book has \"id\" property']){",
+							"    postman.setEnvironmentVariable('book-pk', book.id);",
+							"}",
+							"tests['book has \"publishdate\" property'] = book.hasOwnProperty('publishdate');",
+							"tests['book has \"description\" property'] = book.hasOwnProperty('description');",
+							"tests['book has \"cover\" property'] = book.hasOwnProperty('cover');",
+							"tests['book has \"createdAt\" property'] = book.hasOwnProperty('createdAt');",
+							"tests['book\\'s \"createdAt\" property is an ISO 8601 timestamp'] = new Date(book.createdAt).toISOString() === book.createdAt;",
+							"tests['book has \"updatedAt\" property'] = book.hasOwnProperty('updatedAt');",
+							"tests['book\\'s \"updatedAt\" property is an ISO 8601 timestamp'] = new Date(book.updatedAt).toISOString() === book.updatedAt;"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var current_timestamp = new Date();",
+							"postman.setEnvironmentVariable('date', current_timestamp.toISOString().slice(0, 10));",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{bookshelf-api-url}}/bookshelf?format=json",
+					"host": [
+						"{{bookshelf-api-url}}"
+					],
+					"path": [
+						"bookshelf"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"book\":\n   {\"title\":\"T7\", \n    \"author\": \"A!\", \n    \"publishdate\": \"{{date}}\",\n    \"description\": \"Nice Book!\"\n}}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get ALL books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var is200Response = responseCode.code === 200;",
+							"",
+							"tests['Response code is 200 OK'] = is200Response;",
+							"",
+							"if(is200Response){",
+							"    var responseJSON = JSON.parse(responseBody);",
+							"",
+							"    tests['Response contains \"books\" property'] = responseJSON.hasOwnProperty('books');",
+							"    tests['Response contains \"bookCount\" property'] = responseJSON.hasOwnProperty('bookCount');",
+							"    tests['bookCount is an integer'] = Number.isInteger(responseJSON.bookCount);",
+							"",
+							"    if(responseJSON.books.length){",
+							"        var book = responseJSON.books[0];",
+							"        tests['book has \"title\" property'] = book.hasOwnProperty('title');",
+							"        tests['book has \"author\" property'] = book.hasOwnProperty('author');",
+							"        tests['book has \"id\" property'] = book.hasOwnProperty('id');",
+							"        tests['book has \"publishdate\" property'] = book.hasOwnProperty('publishdate');",
+							"        tests['book has \"description\" property'] = book.hasOwnProperty('description');",
+							"        tests['book has \"cover\" property'] = book.hasOwnProperty('cover');",
+							"        tests['book has \"createdAt\" property'] = book.hasOwnProperty('createdAt');",
+							"        tests['book\\'s \"createdAt\" property is an ISO 8601 timestamp'] = new Date(book.createdAt).toISOString() === book.createdAt;",
+							"        tests['book has \"updatedAt\" property'] = book.hasOwnProperty('updatedAt');",
+							"        tests['book\\'s \"updatedAt\" property is an ISO 8601 timestamp'] = new Date(book.updatedAt).toISOString() === book.updatedAt;",
+							"    } else {",
+							"        tests['bookCount is 0 when feed is empty'] = responseJSON.bookCount === 0;",
+							"    }",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{bookshelf-api-url}}/bookshelf?format=json",
+					"host": [
+						"{{bookshelf-api-url}}"
+					],
+					"path": [
+						"bookshelf"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON = JSON.parse(responseBody);",
+							"",
+							"tests['Response contains \"book\" property'] = responseJSON.hasOwnProperty('book');",
+							"",
+							"var  book = responseJSON.book || {};",
+							"",
+							"tests['book has \"title\" property'] = book.hasOwnProperty('title');",
+							"tests['book has \"author\" property'] = book.hasOwnProperty('author');",
+							"tests['book has \"id\" property'] = book.hasOwnProperty('id');",
+							"if(tests['book has \"id\" property']){",
+							"    postman.setEnvironmentVariable('book-pk', book.id);",
+							"}",
+							"tests['book has \"publishdate\" property'] = book.hasOwnProperty('publishdate');",
+							"tests['book has \"description\" property'] = book.hasOwnProperty('description');",
+							"tests['book has \"cover\" property'] = book.hasOwnProperty('cover');",
+							"tests['book has \"createdAt\" property'] = book.hasOwnProperty('createdAt');",
+							"tests['book\\'s \"createdAt\" property is an ISO 8601 timestamp'] = new Date(book.createdAt).toISOString() === book.createdAt;",
+							"tests['book has \"updatedAt\" property'] = book.hasOwnProperty('updatedAt');",
+							"tests['book\\'s \"updatedAt\" property is an ISO 8601 timestamp'] = new Date(book.updatedAt).toISOString() === book.updatedAt;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{bookshelf-api-url}}/bookshelf/{{book-pk}}?format=json",
+					"host": [
+						"{{bookshelf-api-url}}"
+					],
+					"path": [
+						"bookshelf",
+						"{{book-pk}}"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON = JSON.parse(responseBody);",
+							"",
+							"tests['Response contains \"book\" property'] = responseJSON.hasOwnProperty('book');",
+							"",
+							"var  book = responseJSON.book || {};",
+							"",
+							"tests['book has \"title\" property'] = book.hasOwnProperty('title');",
+							"tests['book has \"author\" property'] = book.hasOwnProperty('author');",
+							"tests['book has \"id\" property'] = book.hasOwnProperty('id');",
+							"tests['book has \"publishdate\" property'] = book.hasOwnProperty('publishdate');",
+							"tests['book has \"description\" property'] = book.hasOwnProperty('description');",
+							"tests['book has \"cover\" property'] = book.hasOwnProperty('cover');",
+							"tests['book has \"createdAt\" property'] = book.hasOwnProperty('createdAt');",
+							"tests['book\\'s \"createdAt\" property is an ISO 8601 timestamp'] = new Date(book.createdAt).toISOString() === book.createdAt;",
+							"tests['book has \"updatedAt\" property'] = book.hasOwnProperty('updatedAt');",
+							"tests['book\\'s \"updatedAt\" property is an ISO 8601 timestamp'] = new Date(book.updatedAt).toISOString() === book.updatedAt;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{bookshelf-api-url}}/bookshelf/{{book-pk}}?format=json",
+					"host": [
+						"{{bookshelf-api-url}}"
+					],
+					"path": [
+						"bookshelf",
+						"{{book-pk}}"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"book\":\n   {\"author\": \"T7\"\n}}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var is204Response = responseCode.code === 204;",
+							"",
+							"tests['Response code is 204 OK'] = is204Response;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{bookshelf-api-url}}/bookshelf/{{book-pk}}?format=json",
+					"host": [
+						"{{bookshelf-api-url}}"
+					],
+					"path": [
+						"bookshelf",
+						"{{book-pk}}"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

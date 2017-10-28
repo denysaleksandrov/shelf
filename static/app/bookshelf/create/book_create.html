@@ -1,0 +1,55 @@
+<md-content class="md-padding" >
+    <div layout="row"  layout-sm="column">
+        <md-card flex flex-gt-sm="30">
+            <h2>Book</h2>
+            <md-card-content>
+                <form name="myForm" class="container-fluid">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <md-input-container class="md-block">
+                          <label>Title</label>
+                          <input name="title" ng-model="$ctrl.book.title" ng-required="true" type="text" placeholder='ex. Origin'>
+                          <div ng-messages="myForm.author.$error">
+                            <div ng-message="required">Title is required.</div>
+                          </div>
+                      </md-input-container>
+                    </div>
+                    <div class="col-xs-12">
+                      <md-input-container class="md-block">
+                          <label>Owner</label>
+                          <input name="author" ng-model="$ctrl.book.author" ng-required="true" type="text" placeholder='ex. Den Brown'>
+                          <div ng-messages="myForm.author.$error">
+                            <div ng-message="required">Author is required.</div>
+                          </div>
+                      </md-input-container>
+                    </div>
+                    <div class="col-xs-12">
+                      <md-input-container class="md-block">
+                          <label>Position</label>
+                          <input name="position" ng-model="$ctrl.device.position" placeholder="1" md-maxlength="2">
+                      </md-input-container>
+                    </div>
+                    <div class="col-xs-12">
+                      <md-input-container class="md-block">
+                          <md-checkbox name="infra" ng-model="$ctrl.device.infrastructure">
+                          Infrastructure
+                          </md-checkbox>
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <md-button type="button" ng-click="$ctrl.reset()">RESET</md-button>
+                  <md-button class="md-raised md-primary" ng-disabled="myForm.$invalid" ng-click="$ctrl.submit()">SUBMIT</md-button>
+                  <md-button type="button" ng-click="$ctrl.cancel()">CANCEL</md-button>
+                </form>
+            </md-card-content>
+        </md-card>
+        <md-card flex >
+            <h2>Card title #2</h2>
+            <md-card-content>
+                <p>Some content</p>
+            </md-card-content>
+        </md-card>
+    </div>
+</md-content>
+<pre>{{$ctrl.device | json}}</pre> 
+<pre>{{$ctrl.searchText}}</pre> 

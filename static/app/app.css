@@ -1,0 +1,84 @@
+md-input-container {
+    width: 100%;
+}
+
+md-input-container.choose_file {
+    width: 50%;
+}
+
+md-dialog { 
+    min-width: 500px;
+}
+
+md-toolbar.md-table-toolbar.ng-hide {
+  display: none;
+}
+md-toolbar.md-table-toolbar.alternate .md-toolbar-tools {
+  color: #1e88e5;
+  font-size: 16px;
+  background-color: #e3f2fd;
+}
+table.md-table td.md-cell {
+    border-top: 0px; 
+}
+
+table.md-table th.md-column {
+    border-bottom: 1px solid rgb(230,230,230);
+}
+
+.transparent {
+    border-color: transparent transparent transparent transparent;
+    box-shadow: 0 0 0 0;
+    background-color: transparent;
+}
+
+### Animate
+.animate-show,
+.animate-hide {
+    -webkit-transition:all linear 1s;
+    -moz-transition:all linear 1s;
+    -ms-transition:all linear 1s;
+    -o-transition:all linear 1s;
+    transition:all linear 1s;
+}
+
+.animate-show.ng-hide-remove,
+.animate-hide.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+    display: block !important;
+}
+
+.animate-hide.ng-hide-add,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+    display: block !important;
+}
+.animate-show-hide.ng-hide {
+    opacity: 0;
+}
+
+.animate-show-hide.ng-hide-add,
+.animate-show-hide.ng-hide-remove {
+    transition: all linear 0.5s;
+}
+
+.card-book {
+    opacity: 1;
+}
+
+
+### Toasts
+
+md-toast.md-error-toast-theme div.md-toast-content {
+    background-color: #ff4d4d;
+    color: white;
+    opacity: .6;
+    font-size: 100%;
+}
+
+md-toast.md-success-toast-theme div.md-toast-content {
+    background-color: #4286f4;
+    color: white;
+    font-size: 100%;
+}
+
