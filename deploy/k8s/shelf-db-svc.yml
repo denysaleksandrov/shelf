@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shelf-db
+  labels:
+    name: shelf-db
+    app: shelf
+spec:
+  ports:
+  - protocol: TCP
+    port: 5432
+    name: shelf-db
+    targetPort: 5432
+  type: LoadBalancer
+  selector:
+    name: shelf-db
+    app: shelf
