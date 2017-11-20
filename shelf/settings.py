@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'shelf',
         'USER': 'shelf',
         'PASSWORD': 'shelf',
-        'HOST': 'localhost',
+        'HOST': os.environ.get('DATABASE_HOST', 'postgres'),
         'PORT': '',
     }
 }
@@ -135,7 +135,6 @@ MEDIA_URL = '/images/'
 
 PROJECT_APPS = [
     'bookshelf',
-    'movieshelf'
 ]
 
 INSTALLED_APPS.extend(PROJECT_APPS)
