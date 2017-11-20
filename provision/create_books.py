@@ -142,6 +142,84 @@ BOOKS = [
                    American authors Robert Jordan and Brandon Sanderson.''',
                    'cover': get_image('A_Memory_of_Light_cover.jpg')
                    }
+          },
+         {'book': {'title': 'The Dark Tower: The Gunslinger',
+                   'author': 'Stephen King',
+                   'publishdate': '1982-06-10',
+                   'description': '''The Gunslinger is a novel by American
+                   author Stephen King, the first volume in the Dark Tower
+                   series he describes as his magnum opus.''',
+                   'cover': get_image('The_Gunslinger.jpg')
+                   }
+         
+          },
+         {'book': {'title': 'The Dark Tower II: The Drawing of the Three',
+                   'author': 'Stephen King',
+                   'publishdate': '1983-05-01',
+                   'description': '''The Drawing of the Three is a fantasy novel
+                   by American writer Stephen King, the second book in The Dark
+                   Tower series, published by Grant in 1987.''',
+                   'cover': get_image('The_Drawing_of_the_Three.jpg')
+                   }
+         
+          },
+         {'book': {'title': 'The Dark Tower III: The Waste Lands',
+                   'author': 'Stephen King',
+                   'publishdate': '1991-08-01',
+                   'description': '''The Waste Lands (subtitled "Redemption") is
+                   a fantasy novel by American writer Stephen King, the third
+                   book of The Dark Tower series.''',
+                   'cover': get_image('The_Waste_Lands.jpg')
+                   }
+         
+          },
+         {'book': {'title': 'The Dark Tower IV: Wizard and Glass',
+                   'author': 'Stephen King',
+                   'publishdate': '1997-11-04',
+                   'description': '''Wizard and Glass is a fantasy novel by
+                   American writer Stephen King, the fourth book in The Dark
+                   Tower series, published in 1997. Subtitled "Regard", it
+                   placed fourth in the annual Locus Poll for best fantasy
+                   novel.''',
+                   'cover': get_image('Wizard_and_Glass.jpg')
+                   }
+         
+          },
+         {'book': {'title': 'The Dark Tower V: Wolves of the Calla',
+                   'author': 'Stephen King',
+                   'publishdate': '2003-11-04',
+                   'description': '''Wolves of the Calla is the fifth novel in
+                   Stephen King's The Dark Tower series. This book continues the
+                   story of Roland Deschain, Eddie Dean, Susannah Dean, Jake
+                   Chambers, and Oy as they make their way toward the Dark
+                   Tower.''',
+                   'cover': get_image('Wolvescalla.jpg')
+                   }
+         
+          },
+         {'book': {'title': 'The Dark Tower VI: Song of Susannah',
+                   'author': 'Stephen King',
+                   'publishdate': '2004-07-08',
+                   'description': '''Song of Susannah is a fantasy novel by
+                   American writer Stephen King, the sixth in his Dark Tower
+                   series.''',
+                   'cover': get_image('Song_of_Susannah.jpg')
+                   }
+         
+          },
+         {'book': {'title': 'The Dark Tower VII: The Dark Tower',
+                   'author': 'Stephen King',
+                   'publishdate': '2004-09-21',
+                   'description': '''The Dark Tower is the seventh novel in
+                   Stephen King's Dark Tower series, published by Grant on
+                   September 21, 2004 (King's birthday), and illustrated by
+                   Michael Whelan. It has four subtitles: REPRODUCTION,
+                   REVELATION, REDEMPTION, and RESUMPTION – all but the second
+                   of these having been used as subtitles for previous novels in
+                   the series.''',
+                   'cover': get_image('Thedarktower7.jpg')
+                   }
+         
           }
 ]
 
