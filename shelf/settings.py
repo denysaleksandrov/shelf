@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'shelf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'shelf',
-        'USER': 'shelf',
-        'PASSWORD': 'shelf',
+        'NAME': os.environ.get('DATABASE_NAME', 'shelf'),
+        'USER': os.environ.get('DATABASE_USER', 'shelf'),
+        'PASSWORD': os.environ.get('DATABASE_PASS', 'shelf'),
         'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
-        'PORT': '',
+        'PORT': os.environ.get('DATABASE_PORT', ''),
     }
 }
 
