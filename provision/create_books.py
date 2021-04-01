@@ -227,6 +227,7 @@ BOOKS = [
 ]
 
 def get_titles():
+    print(f'Getting titles from {URL}')
     response = requests.get(URL, headers=HEADERS)
     titles = [ book.get('title', None) for book in response.json()['books']]
     return titles
