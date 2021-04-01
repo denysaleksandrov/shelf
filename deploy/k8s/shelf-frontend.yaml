@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: shelf-nginx
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        role: shelf-frontend
+    spec:
+      containers:
+      - name: shelf-nginx
+        image: daleksandrov/shelf-nginx
+        ports:
+          - name: web
+            containerPort: 80
+        volumeMounts:
+            # name must match the volume name below
+            - name: nfs
+              mountPath: "/usr/src/app"
+      volumes:
+      - name: nfs
+        persistentVolumeClaim:
+          claimName: nfs
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shelf-frontend-svc
+spec:
+  selector:
+      role: shelf-frontend
+  type: LoadBalancer
+  ports:
+   - port: 80
+     name: http
+     targetPort: 80
+     protocol: TCP

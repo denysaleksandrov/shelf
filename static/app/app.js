@@ -24,6 +24,7 @@ angular.module('bookshelf', [
         // Do not strip strailing slashes from URLs, django expects them.
         $resourceProvider.defaults.stripTrailingSlashes = false;
         $mdThemingProvider.theme('success-toast');
+        $mdThemingProvider.theme('error-toast');
         $mdThemingProvider.theme('default')
             .primaryPalette('blue');
         

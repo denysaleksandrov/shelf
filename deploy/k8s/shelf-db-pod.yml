@@ -3,13 +3,25 @@ kind: Pod
 metadata:
   name: shelf-db
   labels:
-    name: shelf-db
-    app: shelf
+    app: shelf-db
 spec:
   containers:
     - name: shelf-db
-      image: shelf-postgre:1.0
+      image: daleksandrov/shelf-db:1.0
       ports:
         - containerPort: 5432 
           protocol: TCP
-    
+
+---    
+apiVersion: v1
+kind: Service
+metadata:
+  name: shelf-db
+spec:
+  ports:
+  - protocol: TCP
+    port: 5432
+    name: shelf-db
+    targetPort: 5432
+  selector:
+    app: shelf-db

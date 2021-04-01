@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: shelf-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: shelf
+    spec:
+      containers:
+      - name: shelf
+        image: daleksandrov/shelf
+        command: ["/bin/bash", "-c"]
+        args: ["./deploy/bin/wait-for-it.sh shelf-db"]
+        env:       
+          - name: 'DATABASE_HOST'
+            value: 'shelf-db'
+          - name: 'DATABASE_NAME'
+            value: 'shelf'
+          - name: 'DATABASE_USER'
+            value: 'shelf'
+          - name: 'DATABASE_PASSWORD'
+            value: 'shelf'
+        ports:
+          - containerPort: 8010
+            name: http
+            protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shelf-deploy-svc
+spec:
+  selector:
+    app: shelf
+  ports:
+   - port: 8010
+     name: http
+     targetPort: 8010
+     protocol: TCP

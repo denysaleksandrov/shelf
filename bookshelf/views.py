@@ -4,7 +4,7 @@ import json
 import uuid
 
 from django.shortcuts import get_object_or_404, redirect, render
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.management import call_command
 from django.core import serializers
 from django.views import generic
@@ -12,7 +12,7 @@ from django.forms.models import inlineformset_factory
 from django.db.models import Q, Count
 from django.http import JsonResponse
 from django.core.management.base import CommandError
-from django.utils.six import StringIO
+from six import StringIO
 from bookshelf.models import Book
 
 class BookIndexView(generic.ListView):

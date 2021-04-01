@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
+import os
 import json
 import string
 import base64
 import requests
 
-URL = "http://127.0.0.1:8000/api/bookshelf?format=json"
+IP = os.getenv('APP_IP', '127.0.0.1')
+PORT = os.getenv('APP_PORT', '8010')
+URL = "http://{ip}:{port}/api/bookshelf?format=json".format(ip=IP, port=PORT)
 
 HEADERS = {
     'content-type': "application/json",

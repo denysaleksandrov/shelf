@@ -21,6 +21,10 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^bookshelf/', include('bookshelf.urls')), 
-    url(r'^api/', include('bookshelf.api.urls', namespace='bookshelf')),
+    url(r'^api/', include(('bookshelf.api.urls', 'bookshelf.api'), namespace='bookshelf')),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Temporarily allowing gunicorn to serv static files. Should be replaced by
+# nginx doing so.
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()

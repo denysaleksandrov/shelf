@@ -10,11 +10,11 @@ angular.module('bookshelf.list').controller('addController', ['$mdDialog', '$mdT
     
     function error(result) {
         $mdToast.show(
-            $mdToast.simple({
-                position: "bottom right",
-                hideDelay: 200000,
-                template:  '<md-toast class="md-toast md-warn">' + result.data.errors + '</md-toast>'
-            })
+            $mdToast.simple()
+            .textContent(result.data.errors)
+            .theme("error-toast")
+            .position("bottom right")
+            .hideDelay(200000)
         )
     };
 
