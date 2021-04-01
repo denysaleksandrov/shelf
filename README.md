@@ -6,7 +6,8 @@ oc new-app --as-deployment-config -i postgresql --name=postgres \
            -e POSTGRESQL_PASSWORD=shelf \
            -e POSTGRESQL_USER=shelf
 
-oc new-app --as-deployment-config --name shelf python:3.6~https://github.com/denysaleksandrov/shelf \
+oc new-app --as-deployment-config --name shelf \
+           python:3.6~https://github.com/denysaleksandrov/shelf \
            -e DATABASE_NAME=shelf \
            -e DATABASE_USER=shelf \
            -e DATABASE_PASS=shelf \
